@@ -14,14 +14,23 @@ print(df.head())
 
 id_list = df["RowId"].tolist()
 
+# going to break into chunks. even with 1000 rows at a time I still get 19 million rows in each file
+# 100 rows would net me 1.9 million rows in each file and 195 files
 
-df_combinations = pd.DataFrame(columns=['Source','Destination'])
+filenum = 1
 
-for ind in range(5000):
-    df_temp = pd.DataFrame({'Source':df["RowId"].iloc[ind], 'Destination':id_list})
-    df_combinations = pd.concat([df_combinations, df_temp])
+for ctr in range(0, 3000, 100):
+    s = ctr
+    e = ctr + 100
+    print("start: " + str(s) + "   End: " + str(e))
+    df_combinations = pd.DataFrame(columns=['Source','Destination'])
+    for ind in range(s,e):
+        df_temp = pd.DataFrame({'Source':df["RowId"].iloc[ind], 'Destination':id_list})
+        df_combinations = pd.concat([df_combinations, df_temp])
+    filename = 'multiplied' + str(filenum) + '.csv'
+    filenum = filenum + 1
+    df_combinations.to_csv(filename, index=False)
+    print("100 done!! Last Index: " + str(e))
+ 
+#note: I ran this in AWS Cloud9. Can copy to your S3 bucket using aws s3 cp Outputdirectory s3://BUCKET_NAME/FOLDER --recursive
 
-print(df_combinations.shape)
-print(df_combinations.head())
-
-df_combinations.to_csv('multiplied.csv', index=False)

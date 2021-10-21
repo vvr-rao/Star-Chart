@@ -27,7 +27,7 @@ s3_client = boto3.client('s3')
 bucket = "BUCKET_NAME"
 filenum = 1
 
-for ctr in range(0, 19420, 100):
+for ctr in range(0, 19100, 100):
     s = ctr
     e = ctr + 100
     print("start: " + str(s) + "   End: " + str(e))

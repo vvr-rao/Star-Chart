@@ -18,7 +18,7 @@ print(df.head())
 id_list = df["RowId"].tolist()
 
 # going to break into chunks. even with 1000 rows at a time I still get 19 million rows in each file
-# 100 rows would net me 1.9 million rows in each file and 195 files
+# 100 rows would net me 1.9 million rows in each file and 193 files
 
 #note: I ran this in AWS Cloud9 and struggled with memory usage. Hence, uploading files to S3 as they are created
 #Can also copy to your S3 bucket using aws s3 cp Outputdirectory s3://BUCKET_NAME/FOLDER --recursive

@@ -51,7 +51,8 @@ df_combined.insert(16,'gl','')
 df_combined.insert(17,'comp','')
 df_combined.insert(18,'comp_primary','')
 df_combined.insert(19,'base','')
-df_combined.insert(18,'hyg_id','')
+df_combined.insert(20,'hyg_id','')
+df_combined.insert(21,'hd','')
 
 print(df_combined.shape)
 print(df_combined.head())
@@ -75,13 +76,14 @@ for ind in df_stars_mag7.index:
                                       'comp_primary':df_stars_mag7['comp_primary'].iloc[ind],
                                       'gl':df_stars_mag7['gl'].iloc[ind],
                                       'hyg_id':df_stars_mag7['id'].iloc[ind],
+                                      'hd':df_stars_mag7['hd'].iloc[ind],
                                       'RowId':'STAR-'+str(ind)},
                                       ignore_index = True)
 
 print(df_combined.shape)
 print(df_combined.head())
 
-df_combined.to_csv('combined.csv', index=False)
+df_combined.to_csv('combinedV2.csv', index=False)
 
 #define a function to calculate the angular distance between objects using the ra and dec
 # in the sheet - ra is in hours and dec is in degrees

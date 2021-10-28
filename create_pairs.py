@@ -16,6 +16,8 @@ print(df.head())
 
 
 id_list = df["RowId"].tolist()
+ra_list = df["ra"].tolist()
+dec_list = df["dec"].tolist()
 
 # going to break into chunks. even with 1000 rows at a time I still get 19 million rows in each file
 # 100 rows would net me 1.9 million rows in each file and 193 files
@@ -27,13 +29,20 @@ s3_client = boto3.client('s3')
 bucket = "BUCKET_NAME"
 filenum = 1
 
-for ctr in range(0, 19100, 100):
+#for ctr in range(0, 19100, 100):
+for ctr in range(0, 400, 100):
     s = ctr
     e = ctr + 100
     print("start: " + str(s) + "   End: " + str(e))
-    df_combinations = pd.DataFrame(columns=['Source','Destination'])
+    df_combinations = pd.DataFrame(columns=['Source','Destination','SourceRA','SourceDec','DestRA','DestDec'])
     for ind in range(s,e):
-        df_temp = pd.DataFrame({'Source':df["RowId"].iloc[ind], 'Destination':id_list})
+        #df_temp = pd.DataFrame({'Source':df["RowId"].iloc[ind], 'Destination':id_list})
+        df_temp = pd.DataFrame({'Source':df["RowId"].iloc[ind],
+                                'Destination':id_list,
+                                'SourceRA':df["ra"].iloc[ind],
+                                'SourceDec':df["dec"].iloc[ind],
+                                'DestRA':ra_list,
+                                'DestDec':dec_list})
         df_combinations = pd.concat([df_combinations, df_temp])
     filename = 'pairs' + str(filenum) + '.csv'
     filenum = filenum + 1
@@ -53,5 +62,5 @@ filename = 'pairs196.csv'
 df_combinations.to_csv(filename, index=False)
 response = s3_client.upload_file(filename, bucket, filename)
 os.remove(filename)
-print("AllDone!! Last Index: " + str(e))
 
+print("AllDone!! Last Index: " + str(e))

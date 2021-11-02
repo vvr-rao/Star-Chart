@@ -35,7 +35,7 @@ bucket = "emr-astronomy-petproj"
 filenum = 1
 
 
-for ctr in range(0, 19100, 1000):
+for ctr in range(0, 18000, 1000):
     s = ctr
     e = ctr + 1000
     print("start: " + str(s) + "   End: " + str(e))

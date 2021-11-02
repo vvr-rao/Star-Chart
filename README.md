@@ -8,7 +8,8 @@ The source dataset combines data from the Hipparcos Catalog, Yale Bright Star Ca
 Planning to use the data to build and starhopping Website using AWS Athena and Neo4j. 
 Starhopping, in amateur astonomy, is the process of finding objects in a telescope or binoculars by identtifying nearby stars.
 
-Methodology:
+## Methodology:
+
 Below is the planned methodlogy.
 1) Build and dataset of interesting Stars and DSOs.
 2) Calculate angular distances between them (I am expecting this to be a compute intensive process and will use AWS EMR with Pyspark for the computation)
@@ -16,7 +17,8 @@ Below is the planned methodlogy.
 4) Build a front end using Lambda and expose publically
 
 
-Current State: I have been able to extract a subset of the data and create a queryable database using AWS Athena.
+## Current State: 
+I have been able to extract a subset of the data and create a queryable database using AWS Athena.
 
 Explanation of files:
 

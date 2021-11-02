@@ -11,16 +11,17 @@ Starhopping, in amateur astonomy, is the process of finding objects in a telesco
 ## Methodology:
 
 Below is the planned methodlogy.
-1) Build and dataset of interesting Stars and DSOs.
-2) Calculate angular distances between them (I am expecting this to be a compute intensive process and will use AWS EMR with Pyspark for the computation)
+1) Build the dataset of interesting Stars and DSOs. 
+2) Calculate angular distances between them (I am expecting this to be a compute intensive process and will use Pyspark on AWS EMR for the computation)
 3) Load the dataset and distances into S3 as multiple .CSVs and use AWS Athena to query the data.
 4) Build a front end using Lambda and expose publically
+5) Optionally also load the data into Neo4j. This optimizes querying based on relationships. 
 
 
 ## Current State: 
-I have been able to extract a subset of the data and create a queryable database using AWS Athena.
+I have been able to create a queryable database using AWS Athena. The next step is to create the UI
 
-Explanation of files:
+## Explanation of files:
 
 1) htgdata_v3.zip & dso.zip - source data files from the links above. Please refer to original links for data.
 2) Extract_subset_and_combine.py - pulls out a subset of data. I am focussing on stars of Mag 7 or lower and DSO of mag 13 or lower. combinedV2.csv has the dataset

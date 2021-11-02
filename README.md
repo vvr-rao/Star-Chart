@@ -1,18 +1,20 @@
 # Star-Chart
 
-Work in Progress code. Using this to analyze Astronomy data.
-Data source is from the HYG Database and is available here: https://www.astronexus.com/hyg AND https://github.com/astronexus
+Work in Progress code. 
 
+Purpose of this code is to build a starhopping app using AWS Athena and/or Neo4j. 
+(Starhopping, in amateur astonomy, is the process of finding objects of interest in the sky using a telescope or binoculars by identifying nearby stars.)
+
+My Data source is the HYG Database and is available here: https://www.astronexus.com/hyg AND https://github.com/astronexus
 The source dataset combines data from the Hipparcos Catalog, Yale Bright Star Catalog & Gliese Catalog. (I DO NOT own the dataset - refer links above for the original source) 
 
-Planning to use the data to build and starhopping Website using AWS Athena and Neo4j. 
-Starhopping, in amateur astonomy, is the process of finding objects in a telescope or binoculars by identtifying nearby stars.
+
 
 ## Methodology:
 
 Below is the planned methodlogy.
 1) Build the dataset of interesting Stars and DSOs. 
-2) Calculate angular distances between them (I am expecting this to be a compute intensive process and will use Pyspark on AWS EMR for the computation)
+2) Calculate angular distances between them (I expect this to be a compute intensive process and will use Pyspark on AWS EMR for the computation)
 3) Load the dataset and distances into S3 as multiple .CSVs and use AWS Athena to query the data.
 4) Build a front end using AWS Lambda and expose publically
 5) Optionally also load the data into Neo4j. This optimizes querying based on relationships. 

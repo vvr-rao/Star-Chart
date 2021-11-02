@@ -1,6 +1,6 @@
 # Star-Chart
 
-Work in Progress code. 
+-- Work in Progress code. 
 
 Purpose of this code is to build a starhopping app using AWS Athena and/or Neo4j. 
 (Starhopping, in amateur astonomy, is the process of finding objects of interest in the sky using a telescope or binoculars by identifying nearby stars.)

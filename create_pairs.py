@@ -21,7 +21,7 @@ print(df.head())
 
 # Eventually, I decided that I only wanted to calculate distances where the objects (stars and DSOs) would be within 7 degrees of each other
 # this would be fairly useful. As a reference -  Even with binoculars you would not get a FOV greater than 7 degrees. 
-# a 80mm f/5 telescope with 1.25 inch eyepieces would have a max FOV of 4 degrees.
+# an 80mm f/5 telescope with 1.25 inch eyepieces would have a max FOV of 4 degrees.
 # My 10 inch F4.7 Dobsonian has a max FOV or 2.2 degrees with my widest eyepiece.
 
 # a quick and dirty way to limit the size of the dataset would be to put filters on RA and DEC

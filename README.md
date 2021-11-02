@@ -14,7 +14,7 @@ Below is the planned methodlogy.
 1) Build the dataset of interesting Stars and DSOs. 
 2) Calculate angular distances between them (I am expecting this to be a compute intensive process and will use Pyspark on AWS EMR for the computation)
 3) Load the dataset and distances into S3 as multiple .CSVs and use AWS Athena to query the data.
-4) Build a front end using Lambda and expose publically
+4) Build a front end using AWS Lambda and expose publically
 5) Optionally also load the data into Neo4j. This optimizes querying based on relationships. 
 
 

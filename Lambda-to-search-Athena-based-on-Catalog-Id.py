@@ -7,6 +7,8 @@ import time
 #     "Catalog": "$input.params('Catalog')",
 #     "CatalogId": "$input.params('CatalogId')"
 # }
+# NOTE: Athena does not support Synchronous Queries. You submit a query to a queue and retrieve results later. 
+# Here, I am querying, pausing for a few seconds and then retrieveing query results
 
 def lambda_handler(event, context):
     #return("Got event\n" + json.dumps(event, indent=2))

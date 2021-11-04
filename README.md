@@ -21,7 +21,7 @@ Below is the planned methodlogy.
 
 
 ## Current State: 
-I have been able to create a queryable database using AWS Athena. The next step is to create the UI
+I have been able to create a queryable database using AWS Athena, am able to query it using Lambda and provide external access via the API Gateway. Troubleshooting and adding functionality.
 
 ## Explanation of files:
 
@@ -29,3 +29,5 @@ I have been able to create a queryable database using AWS Athena. The next step 
 2) Extract_subset_and_combine.py - pulls out a subset of data. I am focussing on stars of Mag 7 or lower and DSO of mag 13 or lower. combinedV2.csv has the dataset
 3) create_pairs.py - combine stars and dsos into pairs. The purpose of this step is to ease creation of a Pyspark dataframe. This would allow me to run computation of Angular Distances on a large dataset without crashing my machine
 4) Calculate_Distances_using_Pyspark.ipynb - used this to do the compute using Pyspark. I spun up AWS EMR instances for the compute. (Calculate_Distances_using_Standard_Python.py - is an alternative without Pyspark but is a lot slower and not scalable)
+5) Lambda-to-search-Athena-based-on-Catalog-Id.py - Lambda function to accept Catalog Name and Id, query Athena and return the closest Stars and DSOs
+6) index.html - static webpage for the query. Working to clean it up

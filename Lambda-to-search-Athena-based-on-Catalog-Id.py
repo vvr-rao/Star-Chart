@@ -17,7 +17,7 @@ def lambda_handler(event, context):
     #cat = "NGC"
     #cat_id = "2261"
     my_query = "SELECT a.AngularDist, d.hd, d.type, d.ApMagnitude, d.Constellation, d.name, \
-        d.cat1, d.id1  FROM \"AwsDataCatalog\".\"starchart\".\"distances\" a, \"AwsDataCatalog\".\"db_name\".\"table_name\" s, \
+        d.cat1, d.id1  FROM \"AwsDataCatalog\".\"db_name\".\"table_name\" a, \"AwsDataCatalog\".\"db_name\".\"table_name\" s, \
         \"AwsDataCatalog\".\"db_name\".\"table_name\" d   \
         where s.cat1 = \'" + cat + "\' and s.id1 = " + cat_id + " and a.Source = s.RowId   \
         and a.Destination = d.RowId  \

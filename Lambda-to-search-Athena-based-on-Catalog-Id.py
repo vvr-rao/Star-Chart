@@ -49,7 +49,7 @@ def lambda_handler(event, context):
     
     query_results = athena_client.get_query_results(
             QueryExecutionId=QueryId,
-            MaxResults=12
+            MaxResults=40
         
         )
     

@@ -1,0 +1,129 @@
+<h1>Search DSOs</h1>
+    <label for="type">Type</label>
+    <input list="cats" name="type" id="type" />
+    <br/>
+    <label for="iden">ID</label>
+    <input type="text" name="iden" id="iden" />
+    <br/><br/>
+    <input type="button" onclick="GetData()" value="Lookup" />
+    <p id="fetchStatus"></p>
+    <p id="showData"></p>
+
+
+   <datalist id="cats">
+     <option value="M">
+     <option value="NGC">
+     <option value="Col">
+     <option value="C">
+   </datalist>
+
+<ul id="authors"></ul>
+
+    <style>
+        th, td, p, input {
+            font:14px Verdana;
+        }
+        table, th, td 
+        {
+            border: solid 1px #DDD;
+            border-collapse: collapse;
+            padding: 2px 3px;
+            text-align: center;
+        }
+        th {
+            font-weight:bold;
+        }
+    </style>
+
+<script>
+
+function GetData(){
+	var fetchStatus= document.getElementById("fetchStatus");
+        fetchStatus.innerHTML = "Fetching Data....";
+
+	typeval = document.getElementById('type').value
+	iden = document.getElementById('iden').value
+        //alert(typeval)
+        //alert(iden)
+	function createNode(element) {
+    	return document.createElement(element);
+	}
+
+	function append(parent, el) {
+  	return parent.appendChild(el);
+	}
+
+	const ul = document.getElementById('authors');
+	url = '<API_GATEWAY_ENDPOINT>?Catalog=' + typeval + '&CatalogId=' + iden;
+	//alert(url)
+
+
+	let myHeaders = new Headers();
+	myHeaders.append('Accept', 'application/json');
+	myHeaders.append('Content-Type', 'application/json');
+
+	var request = new Request(url, {
+    		method: 'GET',
+    		headers: myHeaders,
+    		mode: 'cors'
+	});
+
+	fetch(request)
+	.then((resp) => resp.json())
+	.then(function(data) {
+  	//alert("got results")
+		let ret= data.Rows;
+	//alert(ret.length)
+  
+    	var obj = ret[1].Data;
+
+    	//alert(obj.length);
+
+    	//alert(obj[0].VarCharValue);
+	//alert(obj[1].VarCharValue);
+	//alert(obj[2].VarCharValue);
+	
+
+	var col = ['Angular Distance', 'HD', 'Type', 'Ap. Magnitude', 'Constelation', 'Common Name', 'Catalog Name', 'Catalog Id']
+	var table = document.createElement("table");
+	var tr = table.insertRow(-1); 
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+	
+	// ADD JSON DATA TO THE TABLE AS ROWS.
+        //for (var i = 0; i < Ret.length; i++) {
+	for (var i = 1; i < ret.length; i++) {
+            tr = table.insertRow(-1);
+
+            var obj = ret[i].Data
+            for (var j = 0; j < 8; j++) {
+		var tabCell = tr.insertCell(-1);
+		var sVal = obj[j].VarCharValue;
+		if (sVal == undefined) {
+			sVal = "";
+		}
+		tabCell.innerHTML = sVal;
+            }
+        }
+
+        fetchStatus.innerHTML = "";
+
+        var divContainer = document.getElementById("showData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+
+	
+	
+	})
+	.catch(function(error) {
+		alert(error)
+  	console.log(error);
+	});
+}
+
+</script>

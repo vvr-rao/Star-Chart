@@ -1,4 +1,10 @@
-<h1>Search DSOs</h1>
+
+<body  style="background-color:grey;">
+<img src="dobsonian.jpg" alt="10 inch Dobsonian"  width="200" height="200" class="center">
+<table class="center">
+<tr>
+<td>
+	<h1>Search DSOs</h1>
     <label for="type">Type</label>
     <input list="cats" name="type" id="type" />
     <br/>
@@ -6,8 +12,19 @@
     <input type="text" name="iden" id="iden" />
     <br/><br/>
     <input type="button" onclick="GetData()" value="Lookup" />
+</td>
+<td>
+	<h1>Search Stars</h1>
+    <label for="hd">HD</label>
+    <input type="text" name="hd" id="hd" />
+    <br/>
+    <input type="button" onclick="GetData()" value="Lookup" />
+</td>
+</tr>
+</table>
+
     <p id="fetchStatus"></p>
-    <p id="showData"></p>
+    <p id="showData"  class="center"></p>
 
 
    <datalist id="cats">
@@ -17,7 +34,7 @@
      <option value="C">
    </datalist>
 
-<ul id="authors"></ul>
+
 
     <style>
         th, td, p, input {
@@ -33,8 +50,23 @@
         th {
             font-weight:bold;
         }
-    </style>
+	h1 {text-align: center;}
+	p {
+		text-align: center;
+	}
 
+	table.center {
+  		margin-left: auto; 
+  		margin-right: auto;
+	}
+	img.center{
+		display: block;
+		margin-left: auto; 
+  		margin-right: auto;
+	}
+
+    </style>
+</body>
 <script>
 
 function GetData(){
@@ -54,7 +86,7 @@ function GetData(){
 	}
 
 	const ul = document.getElementById('authors');
-	url = '<API_GATEWAY_ENDPOINT>?Catalog=' + typeval + '&CatalogId=' + iden;
+	url = 'https://ed84knnweb.execute-api.us-east-1.amazonaws.com/Prod?Catalog=' + typeval + '&CatalogId=' + iden;
 	//alert(url)
 
 
@@ -84,7 +116,7 @@ function GetData(){
 	//alert(obj[2].VarCharValue);
 	
 
-	var col = ['Angular Distance', 'HD', 'Type', 'Ap. Magnitude', 'Constelation', 'Common Name', 'Catalog Name', 'Catalog Id']
+	var col = ['Angular Distance', 'HD', 'Type', 'Ap. Magnitude', 'Constelation', 'Common Name', 'Catalog Name', 'Catalog Id', 'Direction']
 	var table = document.createElement("table");
 	var tr = table.insertRow(-1); 
 
@@ -101,14 +133,35 @@ function GetData(){
             tr = table.insertRow(-1);
 
             var obj = ret[i].Data
+	 //alert(obj[8].VarCharValue)
+	 //alert(obj[9].VarCharValue)
+         //alert(obj[9].VarCharValue - obj[8].VarCharValue)
             for (var j = 0; j < 8; j++) {
 		var tabCell = tr.insertCell(-1);
 		var sVal = obj[j].VarCharValue;
 		if (sVal == undefined) {
 			sVal = "";
-		}
+		}//if
 		tabCell.innerHTML = sVal;
-            }
+            }//for
+	   var raDiff = obj[9].VarCharValue - obj[8].VarCharValue;
+           raDiff = raDiff*15
+           var decDiff = obj[11].VarCharValue - obj[10].VarCharValue;
+           var tabCell = tr.insertCell(-1);
+           var DirVal = "";
+           if (decDiff > 0) {
+               DirVal = "North";
+           }
+           if (decDiff < 0) {
+               DirVal = "South";
+           }
+           if (raDiff > 0) {
+               DirVal = DirVal+"-East";
+           }
+           if (raDiff < 0) {
+               DirVal = DirVal+"-West";
+           }
+           tabCell.innerHTML = DirVal;
         }
 
         fetchStatus.innerHTML = "";

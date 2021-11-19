@@ -9,6 +9,7 @@ import time
 # }
 # NOTE: Athena does not support Synchronous Queries. You submit a query to a queue and retrieve results later. 
 # Here, I am querying, pausing for a few seconds and then retrieveing query results
+# Also, I will be calling the API Gateway via javascipt. Here is a tip: REMEMBER TO ENABLE CORS on the API Gateway!!! Took me a while to figure that out
 
 def lambda_handler(event, context):
     #return("Got event\n" + json.dumps(event, indent=2))

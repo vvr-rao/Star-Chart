@@ -7,7 +7,9 @@ Purpose of this code is to build a starhopping app using AWS Athena and/or Neo4j
 My Data source is the HYG Database and is available here: https://www.astronexus.com/hyg AND https://github.com/astronexus
 The source dataset combines data from the Hipparcos Catalog, Yale Bright Star Catalog & Gliese Catalog. (I DO NOT own the dataset - refer links above for the original source) 
 
+Video Tutorial explaining what I did...
 
+[![Video Tutorial](https://github.com/vvr-rao/Star-Chart/blob/main/images/youtube.jpg)](https://www.youtube.com/watch?v=GFhC0YKY13s&list=PLTPAjdTj-kaaAN9QUfXe9QTYdrrp2nDBX)
 
 
 Screenshot of Front End...

@@ -36,7 +36,7 @@ I have been able to create a queryable database using AWS Athena, am able to que
 6) index.html - static webpage for the query. Working to clean it up and add bells and whistles
 
 ## Potential Future Upgrades:
-1) Can modify the Spark jobs to use Transient Clusters. This would be useful in case I need to build out a pipeline to ingest data on a regular basis
+1) Modify the Spark jobs to use Transient Clusters. This would be useful in case I need to build out a pipeline to ingest data on a regular basis
 2) Enhance the front and back ends. Potentially, could use Amplify to build out a React frontend while retaining a Lambda based REST API as the backend. Datastore can be moved to DynoamoDB for vastly improved performance. Advantage of Amplify if that it could be expanded into a mobile app.
 3) Some sort of logic to traverse from from one node to another using the edges. Can optimize using an appropriate algorithm.
 

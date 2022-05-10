@@ -1,7 +1,7 @@
 # Star-Chart
 
 
-Purpose of this code is to build a starhopping app using AWS Athena and/or Neo4j. 
+Purpose of this code is to build a starhopping app using the features of AWS. 
 (Starhopping, in amateur astonomy, is the process of finding objects of interest in the sky using a telescope or binoculars by identifying nearby stars.)
 
 My Data source is the HYG Database and is available here: https://www.astronexus.com/hyg AND https://github.com/astronexus

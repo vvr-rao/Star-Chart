@@ -17,9 +17,9 @@ Screenshot of Front End...
 
 Below is the planned methodlogy.
 1) Build the dataset of interesting Stars and DSOs. 
-2) Calculate angular distances between them (I expect this to be a compute intensive process and will use Pyspark on AWS EMR for the computation)
-3) Load the dataset and distances into S3 as multiple .CSVs and use AWS Athena to query the data.
-4) Build a front end using AWS Lambda and expose publically
+2) Calculate angular distances between them (I expect this to be a compute intensive process and will use Pyspark on AWS EMR for the computation). Store ths distances in a separate set of files.
+3) Load the dataset and distances into S3 as multiple .CSVs and use AWS Athena to query the data. This is a pseudo Graph Database with the Stars & DSOs table as the NODES and the distances between them as the EDGES.
+4) Build a front end using AWS Lambda and and a static website hosted on S3 and expose publically
 5) Optionally also load the data into Neo4j. This optimizes querying based on relationships. 
 
 
@@ -34,3 +34,9 @@ I have been able to create a queryable database using AWS Athena, am able to que
 4) Calculate_Distances_using_Pyspark.ipynb - used this to do the compute using Pyspark. I spun up AWS EMR instances for the compute. (Calculate_Distances_using_Standard_Python.py - is an alternative without Pyspark but is a lot slower and not scalable)
 5) Lambda-to-search-Athena-based-on-Catalog-Id.py - Lambda function to accept Catalog Name and Id, query Athena and return the closest Stars and DSOs
 6) index.html - static webpage for the query. Working to clean it up and add bells and whistles
+
+## Potential Future Upgrades:
+1) Can modify the Spark jobs to use Transient Clusters. This would be useful in case I need to build out a pipeline to ingest data on a regular basis
+2) Enhance the front and back ends. Potentially, could use Amplify to build out a React frontend while retaining a Lambda based REST API as the backend. Datastore can be moved to DynoamoDB for vastly improved performance.
+3) Some sort of logic to traverse from point to point using the edges. Can optimize using an appropriate algorithm.
+
